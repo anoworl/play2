@@ -18,6 +18,7 @@
 # limitations under the License.
 
 chef_gem "rubyzip" do
+  version "1.1.0"
 end
 require 'zip'
 
