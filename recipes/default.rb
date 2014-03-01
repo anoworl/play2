@@ -18,6 +18,7 @@
 # limitations under the License.
 
 chef_gem "rubyzip" do
+  version "1.1.0"
 end
 require 'zip'
 
@@ -41,7 +42,7 @@ unless File.directory? destinationPath
   ruby_block "install" do
     block do
       #Unzip
-      Zip::ZipFile.open(archiveFile) { |zip_file|
+      Zip::File.open(archiveFile) { |zip_file|
         zip_file.each { |f|
           unless f.directory?
             f_path=::File.join(play2Home, f.name)
@@ -51,13 +52,7 @@ unless File.directory? destinationPath
         }
       }
 
-      FileUtils.chmod "+x", "#{destinationPath}/play"
-      FileUtils.chmod "+x", "#{destinationPath}/framework/build"
-      FileUtils.chmod "+x", "#{destinationPath}/framework/build.bat"
-      FileUtils.chmod "+x", "#{destinationPath}/framework/clean"
-      FileUtils.chmod "+x", "#{destinationPath}/framework/cleanEverything"
-      FileUtils.chmod "+x", "#{destinationPath}/framework/package"
-      FileUtils.chmod "+x", "#{destinationPath}/framework/runtests"
+      FileUtils.chmod_R 0777, "#{destinationPath}"
       
       #Link
       FileUtils.ln_sf "#{destinationPath}/play", "/usr/bin/play"
