@@ -23,7 +23,8 @@ end
 require 'zip'
 
 play2Home 		= node.play2.home
-destinationName = "play-#{node.play2.version}"
+
+destinationName = "typesafe-activator-#{node.play2.version}"
 zipName 		= destinationName+".zip"
 destinationPath = play2Home+"/"+destinationName 
 archiveFile		= play2Home+"/"+zipName
@@ -36,7 +37,6 @@ unless File.directory? destinationPath
   #Download
   remote_file "#{archiveFile}" do
     source node.play2.url+node.play2.version+"/#{zipName}"
-    checksum node.play2.checksum
   end
 
   ruby_block "install" do
