@@ -55,7 +55,7 @@ unless File.directory? destinationPath
       FileUtils.chmod_R 0777, "#{destinationPath}"
       
       #Link
-      FileUtils.ln_sf "#{destinationPath}/play", "/usr/bin/play"
+      FileUtils.ln_sf "#{destinationPath}/activator", "/usr/bin/activator"
 
       #Clean
       FileUtils.rm archiveFile
