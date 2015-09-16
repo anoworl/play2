@@ -26,7 +26,7 @@ play2Home 		= node.play2.home
 
 destinationName = "typesafe-activator-#{node.play2.version}"
 zipName 		= destinationName+".zip"
-destinationPath = play2Home+"/"+"activator-dist-#{node.play2.version}"
+destinationPath = play2Home+"/"+"activator-#{node.play2.version}"
 archiveFile		= play2Home+"/"+zipName
 
 unless File.directory? destinationPath
